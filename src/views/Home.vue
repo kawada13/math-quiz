@@ -1,18 +1,49 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Math Quiz</h1>
+    <Quiz v-if="operator" :operator='operator' @clear="clear" />
+    <Operator v-if="!operator" @changeOperator="changeOperator" />
   </div>
 </template>
 
+
+
+
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+
+import Operator from '@/components/Operator.vue';
+import Quiz from '@/components/Quiz.vue';
 
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
+  data() {
+    return {
+      operator: null
+    }
+  },
+  methods: {
+    changeOperator(ope) {
+      this.operator = ope
+    },
+    clear() {
+      this.operator = null
+    }
+  },
+  
+  components: {Operator, Quiz}
 }
 </script>
+
+
+
+<style scoped>
+.home {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  font-size: 24px;
+}
+
+
+</style>
